@@ -1,0 +1,15 @@
+
+If script 'svgc.x86_32.SlackBuild' is used on x86_64 distribution then
+we should add '-m32' option into SLKCFLAGS variable!
+                                                   V
+if [ "$ARCH" = "i386" ]; then                      |
+  SLKCFLAGS="-O2 -march=i386 -mcpu=i686"           |
+elif [ "$ARCH" = "i486" ]; then                    |
+  SLKCFLAGS="-O2 -m32 -march=i486 -mtune=i686"     |
+                 ==== <-----------------------------
+elif [ "$ARCH" = "s390" ]; then
+  SLKCFLAGS="-O2"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+  LIBSUFFIX=${LIBSUFFIX:-64}
+fi

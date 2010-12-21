@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# Build svgc-config script
+#
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+exec_prefix_set=no
+libdir=@libdir@
+VERSION=@VERSION@
+
+usage()
+{
+cat <<EOF
+
+   Usage  : make-svgc-config [--version=VERSION] [OPTIONS]
+   Options:
+            [--prefix=DIR]
+            [--exec-prefix=DIR]
+
+   Output : ./svgc-config
+
+EOF
+   exit $1
+}
+
+
+#if test $# -eq 0; then
+#   usage 1 1>&2
+#fi
+
+while test $# -gt 0; do
+   case "$1" in
+   -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+   *) optarg= ;;
+   esac
+
+   case $1 in
+      --prefix=*)
+        prefix=$optarg
+        if test $exec_prefix_set = no ; then
+           exec_prefix=$optarg
+        fi
+        ;;
+      --exec-prefix=*)
+        exec_prefix=$optarg
+        exec_prefix_set=yes
+        ;;
+      --version=*)
+        VERSION=$optarg
+        ;;
+      *)
+        usage 1 1>&2
+        ;;
+   esac
+   shift
+done
+
+if test "$exec_prefix" = "/"; then
+   exec_prefix=
+fi
+
+
+cat  > svgc-config <<EOF
+#!/bin/sh
+
+VERSION=$VERSION
+
+prefix=$prefix
+exec_prefix=$exec_prefix
+exec_prefix_set=no
+libdir=$libdir
+
+EOF
+
+cat >> svgc-config < head
+
+cat >> svgc-config <<EOF
+
+svgc_cppflags=" -I\${prefix}/include"
+svgc_cflags=" -funsigned-char -I\${prefix}/include"
+
+svgc_libs_flags="-L\${libdir}"
+svgc_libs=" @LIBSVGC_LD_FLAG@"
+
+svgc_ldflags="-Wl,-rpath,\${libdir}"
+
+EOF
+
+cat >> svgc-config < tail
+
+chmod +x svgc-config

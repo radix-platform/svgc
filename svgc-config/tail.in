@@ -1,0 +1,39 @@
+
+
+if test "$echo_prefix" = "yes"; then
+   echo $prefix
+fi
+
+if test "$echo_exec_prefix" = "yes"; then
+   echo $exec_prefix
+fi
+
+
+if test "$echo_cppflags" = "yes"; then
+   echo $svgc_cppflags
+fi
+
+if test "$echo_cflags" = "yes"; then
+   echo $svgc_cflags
+fi
+
+if test "$echo_ldflags" = "yes"; then
+   my_svgc_libs_flags=
+   libdirs=-L/usr/lib
+   for i in $svgc_libs_flags ; do
+      if test $i != -L/usr/lib ; then
+         if test -z "$my_svgc_libs_flags" ; then
+            my_svgc_libs_flags="$i"
+         else
+            my_svgc_libs_flags="$my_svgc_libs_flags $i"
+         fi
+      fi
+   done
+
+   echo $svgc_ldflags $my_svgc_libs_flags $libdirs
+fi
+
+if test "$echo_libs" = "yes"; then
+   echo $svgc_libs
+fi      
+

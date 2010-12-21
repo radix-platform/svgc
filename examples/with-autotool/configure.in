@@ -1,0 +1,10 @@
+
+
+AC_INIT(Makefile.in)
+
+AC_CHECK_SVGC([1.0.1])
+
+AC_EXEEXT
+
+AC_OUTPUT(Makefile)
+

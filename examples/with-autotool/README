@@ -1,0 +1,13 @@
+
+BUILD:
+
+   $ cd _autogen && make_config.sh
+   $ ./configure
+   $ make
+   $ ./main
+   $ view.html
+
+
+CLEAR:
+   $ cd _autogen && clean_config.sh
+

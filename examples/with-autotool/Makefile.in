@@ -1,0 +1,33 @@
+
+
+EXEEXT  = @EXEEXT@
+
+CC      = @CC@
+CFLAGS  = @CFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS    = @LIBS@ -lm
+
+
+SOURCES   = main.c
+OBJECTS   = main.o
+
+
+.SUFFIXES:
+.SUFFIXES: .o .c
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: main
+
+
+main: $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ $(LIBS)
+
+
+clean:
+	rm *.o main$(EXEEXT)
+
+distclean:
+	rm -f main$(EXEEXT) *.o
+	rm -f config.log config.status config.cache
+	rm -f Makefile

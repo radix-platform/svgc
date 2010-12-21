@@ -1,0 +1,74 @@
+
+/*
+  This file contant RUSSIAN letters( code-page: iso-8859-5 )
+ ***************************************************************/
+
+/* begin *
+
+   Создание дистрибутива:
+   =====================
+
+      0. В корне (..) создал файл version.h
+
+      1. В каталоге исходников (../src) сделал _svgc_version.c;
+         декларации функций
+
+            extern int
+            _svgc_get_major_version __tx_PROTO(( void ));
+            extern int
+            _svgc_get_minor_version __tx_PROTO(( void ));
+            extern int
+            _svgc_get_micro_version __tx_PROTO(( void ));
+
+	 из _svgc_version.c записал в svgc.h для того,
+	 чтобы дать пользователям и не создавать еще один поставляемый
+	 заголовочный файл.
+
+
+      2. В корне (..) выполнил команду
+
+         $ shtoolize -q all
+
+         для получения собственной копии shtool.
+
+      3. Здесь (.) выполнил скрипт
+
+         $ ./_make-version-c.sh
+
+         тем самым создал в корне version.c .
+
+      4. Создание (в корне) файлов:
+            ../AUTHORS
+            ../ChangeLog
+            ../NEWS
+            ../README
+         это произвольным образом, на данном этапе
+         необходимо лишь их наличие (для automake).
+
+      5. Создание (в корне) файлов:
++            ../acsite.m4
++            ../Makefile.am
++            ../svgc-config/Makefile.am
++            ../svgc-config/head.in
++            ../svgc-config/make-svgc-config.in
++            ../svgc-config/tail.in
++            ../svgc.m4
++            ../configure.in
++            ../src/Makefile.am
+         это фактически и есть разработка средств
+         компиляции, инсталляции и, в конечном итоге,
+         создание дистрибутива.
+
+      6. Выполнил script _7.sh:
+            #!/bin/sh
+
+            cd ..
+
+            libtoolize --force --copy
+            aclocal
+            autoheader
+            automake --gnu --add-missing --copy
+            autoconf
+
+
+ * end */

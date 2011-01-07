@@ -945,9 +945,10 @@ __svg_new_line( x1, y1, x2, y2 )
 }
 
 struct __svg_node *
-__svg_new_rect( x, y, width, height )
+__svg_new_rect( x, y, width, height, rx, ry )
    double x, y;
    double width, height;
+   double rx, ry;
 {
    struct __svg_rect *new = NULL;
    char               buf[256];
@@ -962,10 +963,15 @@ __svg_new_rect( x, y, width, height )
 
    if( !new->id || !new->style ) return( (struct __svg_node *)NULL );
 
+   if( rx < 0.0 ) rx = 0.0;
+   if( ry < 0.0 ) ry = 0.0;
+
    new->x = x;
    new->y = y;
    new->width  =  width;
    new->height = height;
+   new->rx = rx;
+   new->ry = ry;
 
    return( (struct __svg_node *)new );
 }
@@ -1475,6 +1481,19 @@ __svg_scene_add_node( scene, node )
 }
 
 
+/* Get node ID: */
+const char *
+__svg_get_node_id( node )
+   struct __svg_node *node;
+{
+   const char *error = (const char *)NULL;
+
+   if( !node->id || !node->id[0] ) return( error );
+   
+   return( (const char *)node->id );
+}
+
+
 /***************************************************************
   OUTPUT:
  ***************************************************************/
@@ -1692,12 +1711,16 @@ __svg_paint_node( data )
 "           y=\"%0.3f\"\n"
 "       width=\"%0.3f\"\n"
 "      height=\"%0.3f\"\n"
+"          rx=\"%0.3f\"\n"
+"          ry=\"%0.3f\"\n"
 "       style=\"fill:%s;stroke:%s;stroke-width:%0.3f;stroke-linecap:%s;stroke-linejoin:%s;stroke-dasharray:%s;\" />\n",
          node->id, 
          ((struct __svg_rect *)node)->x,
          ((struct __svg_rect *)node)->y,
          ((struct __svg_rect *)node)->width,
          ((struct __svg_rect *)node)->height,
+         ((struct __svg_rect *)node)->rx,
+         ((struct __svg_rect *)node)->ry,
          node->style->fill->use_fill,
          node->style->stroke->use_stroke,
          node->style->stroke->stroke_width,

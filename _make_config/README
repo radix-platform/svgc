@@ -71,4 +71,26 @@
             autoconf
 
 
+   Изменение версии дистрибутива:
+   =============================
+
+   1. В файле version.h меняем макро-определение VERSION, а также
+      определения
+
+         #define LT_CURRENT "1"
+         #define LT_REVISION "2"
+         #define LT_AGE "0"
+
+      Затем выполняем скрипт ./_make-version-c.sh .
+
+   2. В файле src/Makefile.am меняем параметр
+
+         libsvgc_la_LDFLAGS = -version-info 1:1:0
+
+      на
+
+         libsvgc_la_LDFLAGS = -version-info 1:2:0
+
+      Затем выполняем скрипт ./_7.sh .
+
  * end */

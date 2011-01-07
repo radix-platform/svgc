@@ -11,6 +11,6 @@ libsvgc_la_SOURCES = svgc-dlist.c \
 
 libsvgc_la_CFLAGS = -I$(top_srcdir)
 
-libsvgc_la_LDFLAGS = -version-info 1:1:0
+libsvgc_la_LDFLAGS = -version-info 1:2:0
 
 include_HEADERS = svgc.h svgc-dlist.h

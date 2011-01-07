@@ -134,7 +134,7 @@ int main( void )
    __svg_set_scene_stroke_linecap( LINECAP_SQUARE );
 
 
-   rect = (struct __svg_rect *)__svg_new_rect( x0-25.0, y0-1.0, 50, 2 );
+   rect = (struct __svg_rect *)__svg_new_rect( x0-25.0, y0-1.0, 50, 2, 0, 0 );
    (void)__svg_set_fill_rgb( (struct __svg_node *)rect, 0, 0, 0 );
    (void)__svg_scene_add_node( scene, (struct __svg_node *)rect );
 

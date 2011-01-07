@@ -271,6 +271,7 @@ struct __svg_rect
 
    double x, y;
    double width, height;
+   double rx, ry;
 };
 
 typedef struct __svg_circle  __svg_circle;
@@ -388,7 +389,9 @@ extern struct __svg_node *__svg_new_line( double x1,
 extern struct __svg_node *__svg_new_rect( double x,
                                           double y,
                                           double width,
-                                          double height );
+                                          double height,
+                                          double rx,
+                                          double ry );
 
 extern struct __svg_node *__svg_new_circle( double cx,
                                             double cy,
@@ -462,6 +465,8 @@ extern void __svg_set_scene_text_font_family( const char *family );
 extern void __svg_set_scene_text_font_size( int size );
 
 
+/* Get node ID: */
+extern const char *__svg_get_node_id( struct __svg_node *node );
 
 
 /***************************************************************

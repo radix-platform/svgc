@@ -1,3 +1,9 @@
+2011-01-08  Andrey V.Kosteltsev <kosteltsev@gmail.com>
+
+        * src/Makefile.am: New revision.
+        * version.h: New revision.
+	* src/svgc.h, src/svgc.c: The rx, ry attributes are added to rect element.
+
 2010-12-21  Andrey V.Kosteltsev <kosteltsev@gmail.com>
 
         * all-files: The first wersion of SVG C Library.

@@ -74,7 +74,13 @@
    Изменение версии дистрибутива:
    =============================
 
-   1. В файле version.h меняем макро-определение VERSION, а также
+   1. В файле configure.in меняем определение
+         AM_INIT_AUTOMAKE(svgc, 1.0.1)
+      на
+         AM_INIT_AUTOMAKE(svgc, 1.0.2)
+      .
+
+   2. В файле version.h меняем макро-определение VERSION, а также
       определения
 
          #define LT_CURRENT "1"
@@ -83,7 +89,7 @@
 
       Затем выполняем скрипт ./_make-version-c.sh .
 
-   2. В файле src/Makefile.am меняем параметр
+   3. В файле src/Makefile.am меняем параметр
 
          libsvgc_la_LDFLAGS = -version-info 1:1:0
 

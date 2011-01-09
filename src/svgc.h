@@ -404,9 +404,27 @@ struct __svg_l_gradient
    struct svgc_dlist  *stops;
 
    char   *units;
+   char   *spread;
 
    double  x1, y1;
    double  x2, y2;
+};
+
+typedef struct __svg_r_gradient __svg_r_gradient;
+struct __svg_r_gradient
+{
+   int                 type;
+   char               *id;
+   struct __svg_style *style;
+
+   struct svgc_dlist  *stops;
+
+   char   *units;
+   char   *spread;
+
+   double  cx, cy;
+   double  r;
+   double  fx, fy;
 };
 
 /* NOTE: only for gradients */
@@ -490,11 +508,20 @@ extern struct __svg_node *__svg_new_image( double  x,
                                            char   *href,
                                            char   *title );
 
-extern struct __svg_node *__svg_new_l_gradient( const char *units,
+extern struct __svg_node *__svg_new_l_gradient( const char *units,  /* objectBoundingBox | userSpaceOnUse */
+                                                const char *spread, /* pad | reflect | repeat */
                                                 double      x1,
                                                 double      y1,
                                                 double      x2,
                                                 double      y2 );
+
+extern struct __svg_node *__svg_new_r_gradient( const char *units,  /* objectBoundingBox | userSpaceOnUse */
+                                                const char *spread, /* pad | reflect | repeat */
+                                                double      cx,
+                                                double      cy,
+                                                double      r,
+                                                double      fx,
+                                                double      fy );
 
 extern struct __svg_node *__svg_new_stop( double offset );
 

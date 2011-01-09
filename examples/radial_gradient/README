@@ -1,0 +1,11 @@
+
+BUILD:
+
+   $ make
+   $ ./main
+   $ view.html
+
+
+CLEAN:
+   $ make clean
+

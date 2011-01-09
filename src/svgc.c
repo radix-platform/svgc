@@ -986,10 +986,25 @@ __svg_free_node( data )
    {
       if( ((struct __svg_l_gradient *)node)->units )
          free( ((struct __svg_l_gradient *)node)->units );
+      if( ((struct __svg_l_gradient *)node)->spread )
+         free( ((struct __svg_l_gradient *)node)->spread );
       if( ((struct __svg_l_gradient *)node)->stops )
       {
          /* clear svgc_dlist */
          free_svgc_dlist( ((struct __svg_l_gradient *)node)->stops, __svg_free_node );
+      }
+   }
+
+   if( node->type == SVG_R_GRADIENT  )
+   {
+      if( ((struct __svg_r_gradient *)node)->units )
+         free( ((struct __svg_r_gradient *)node)->units );
+      if( ((struct __svg_r_gradient *)node)->spread )
+         free( ((struct __svg_r_gradient *)node)->spread );
+      if( ((struct __svg_r_gradient *)node)->stops )
+      {
+         /* clear svgc_dlist */
+         free_svgc_dlist( ((struct __svg_r_gradient *)node)->stops, __svg_free_node );
       }
    }
 
@@ -1321,8 +1336,9 @@ __svg_new_image( x, y, width, height, href, title )
 }
 
 struct __svg_node *
-__svg_new_l_gradient( units, x1, y1, x2, y2 )
+__svg_new_l_gradient( units, spread, x1, y1, x2, y2 )
    const char *units;
+   const char *spread;
    double      x1, y1;
    double      x2, y2;
 {
@@ -1342,10 +1358,59 @@ __svg_new_l_gradient( units, x1, y1, x2, y2 )
    if( !units || !units[0] ) new->units = __svg_str_dup( "objectBoundingBox" );
    else                      new->units = __svg_str_dup( units );
 
+   if( !spread || !spread[0] ) new->spread = __svg_str_dup( "pad" );
+   else                        new->spread = __svg_str_dup( spread );
+
    new->x1 = x1;
    new->y1 = y1;
    new->x2 = x2;
    new->y2 = y2;
+
+   new->stops = create_svgc_dlist();
+   if( !new->stops )
+   {
+      if( new->id )    free( new->id );
+      if( new->style ) __svg_free_style( new->style );;
+      if( new->units ) free( new->units );
+      free( new );
+      return( (struct __svg_node *)NULL );
+   }
+
+   return( (struct __svg_node *)new );
+}
+
+struct __svg_node *
+__svg_new_r_gradient( units, spread, cx, cy, r, fx, fy )
+   const char *units;
+   const char *spread;
+   double      cx, cy;
+   double      r;
+   double      fx, fy;
+{
+   struct __svg_r_gradient *new = NULL;
+   char                     buf[256];
+
+   new = (struct __svg_r_gradient *)malloc( sizeof( struct __svg_r_gradient ) );
+   if( new == (struct __svg_r_gradient *)NULL ) return( (struct __svg_node *)NULL );
+   memset( (void *)new, 0, sizeof( struct __svg_r_gradient ) );
+   new->type  = SVG_R_GRADIENT;
+   sprintf( buf, "rg%04d", current_id++ );
+   new->id    = __svg_str_dup( buf );
+   new->style = __svg_new_style();
+
+   if( !new->id || !new->style ) return( (struct __svg_node *)NULL );
+
+   if( !units || !units[0] ) new->units = __svg_str_dup( "objectBoundingBox" );
+   else                      new->units = __svg_str_dup( units );
+
+   if( !spread || !spread[0] ) new->spread = __svg_str_dup( "pad" );
+   else                        new->spread = __svg_str_dup( spread );
+
+   new->cx = cx;
+   new->cy = cy;
+   new->r = r;
+   new->fx = fx;
+   new->fy = fy;
 
    new->stops = create_svgc_dlist();
    if( !new->stops )
@@ -1974,13 +2039,14 @@ __svg_paint_l_gradient
 
    fprintf( output_file, 
 "    <linearGradient\n"
-"          id=\"%s\" gradientUnits=\"%s\"\n"
+"          id=\"%s\" gradientUnits=\"%s\" spreadMethod=\"%s\"\n"
 "          x1=\"%0.3f\"\n"
 "          y1=\"%0.3f\"\n"
 "          x2=\"%0.3f\"\n"
 "          y2=\"%0.3f\">\n",
          node->id, 
          ((struct __svg_l_gradient *)node)->units,
+         ((struct __svg_l_gradient *)node)->spread,
          ((struct __svg_l_gradient *)node)->x1,
          ((struct __svg_l_gradient *)node)->y1,
          ((struct __svg_l_gradient *)node)->x2,
@@ -1995,6 +2061,43 @@ __svg_paint_l_gradient
 
    fprintf( output_file, 
 "    </linearGradient>\n" );
+}
+
+void 
+__svg_paint_r_gradient
+( data )
+   void *data;
+{
+   struct __svg_node *node = (struct __svg_node *)data;
+
+   if( !node ) return;
+
+   fprintf( output_file, 
+"    <radialGradient\n"
+"          id=\"%s\" gradientUnits=\"%s\" spreadMethod=\"%s\"\n"
+"          cx=\"%0.3f\"\n"
+"          cy=\"%0.3f\"\n"
+"           r=\"%0.3f\"\n"
+"          fx=\"%0.3f\"\n"
+"          fy=\"%0.3f\">\n",
+         node->id, 
+         ((struct __svg_r_gradient *)node)->units,
+         ((struct __svg_r_gradient *)node)->spread,
+         ((struct __svg_r_gradient *)node)->cx,
+         ((struct __svg_r_gradient *)node)->cy,
+         ((struct __svg_r_gradient *)node)->r,
+         ((struct __svg_r_gradient *)node)->fx,
+         ((struct __svg_r_gradient *)node)->fy );
+
+   if( ((struct __svg_r_gradient *)node)->stops )
+   {
+      /* paint svgc_dlist */
+      for_each_svgc_dlist_node_data( 
+         ((struct __svg_r_gradient *)node)->stops, __svg_paint_stop );
+   }
+
+   fprintf( output_file, 
+"    </radialGradient>\n" );
 }
 
 
@@ -2014,6 +2117,10 @@ __svg_paint_defs( data )
 
       case SVG_L_GRADIENT:
          __svg_paint_l_gradient( data );
+         break;
+
+      case SVG_R_GRADIENT:
+         __svg_paint_r_gradient( data );
          break;
    }
 }

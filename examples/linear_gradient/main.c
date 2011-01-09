@@ -32,7 +32,7 @@ int main( void )
    }
 
    l_gradient = 
-     (struct __svg_l_gradient *)__svg_new_l_gradient( NULL, 0.0, 0.0, 0.0, 1.0 );
+     (struct __svg_l_gradient *)__svg_new_l_gradient( NULL, NULL, 0.0, 0.0, 0.0, 1.0 );
 
    stop = (struct __svg_stop *)__svg_new_stop( 0.0 );
    (void)__svg_set_stop_color_rgb( (struct __svg_node *)stop, 0, 247, 248 );

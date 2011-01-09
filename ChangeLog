@@ -1,5 +1,9 @@
 2011-01-09  Andrey V.Kosteltsev <kosteltsev@gmail.com>
 
+	* src/svgc.h, src/svgc.c: radialGradient element is added.
+
+2011-01-09  Andrey V.Kosteltsev <kosteltsev@gmail.com>
+
 	* src/svgc.h, src/svgc.c: linearGradient element is added.
 
 2011-01-08  Andrey V.Kosteltsev <kosteltsev@gmail.com>

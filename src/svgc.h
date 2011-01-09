@@ -184,11 +184,32 @@ struct __svg_fill
 };
 
 
+#define STOP_COLOR_DEFAULT "black"
+
+typedef struct __svg_stop_color __svg_stop_color;
+struct __svg_stop_color
+{
+   struct __svg_rgb  stop_color;
+   char             *use_stop_color;
+};
+
+
+#define STOP_OPACITY_DEFAULT 1.0
+
+typedef struct __svg_stop_opacity __svg_stop_opacity;
+struct __svg_stop_opacity
+{
+   double stop_opacity;
+};
+
+
 typedef struct __svg_style __svg_style;
 struct __svg_style
 {
-   struct __svg_stroke *stroke;
-   struct __svg_fill   *fill;
+   struct __svg_stroke       *stroke;
+   struct __svg_fill         *fill;
+   struct __svg_stop_color   *stop_color;
+   struct __svg_stop_opacity *stop_opacity;
 };
 
 
@@ -203,6 +224,10 @@ extern struct __svg_stroke *__svg_new_stroke( void );
 extern void __svg_free_stroke( struct __svg_stroke *s );
 extern struct __svg_fill *__svg_new_fill( void );
 extern void __svg_free_fill( struct __svg_fill *f );
+extern struct __svg_stop_color *__svg_new_stop_color( void );
+extern void __svg_free_stop_color( struct __svg_stop_color *sc );
+extern struct __svg_stop_opacity *__svg_new_stop_opacity( void );
+extern void __svg_free_stop_opacity( struct __svg_stop_opacity *so );
 
 extern struct __svg_style *__svg_new_style( void );
 extern void __svg_free_style( struct __svg_style *style );
@@ -212,16 +237,19 @@ extern void __svg_free_style( struct __svg_style *style );
 
 /* NODE: */
 
-#define SVG_SHEET     1
-#define SVG_LINE      2
-#define SVG_RECT      3
-#define SVG_CIRCLE    4
-#define SVG_ELLIPSE   5
-#define SVG_POLYGON   6
-#define SVG_POLYLINE  7
-#define SVG_PATH      8
-#define SVG_TEXT      9
-#define SVG_IMAGE    10
+#define SVG_SHEET        1
+#define SVG_LINE         2
+#define SVG_RECT         3
+#define SVG_CIRCLE       4
+#define SVG_ELLIPSE      5
+#define SVG_POLYGON      6
+#define SVG_POLYLINE     7
+#define SVG_PATH         8
+#define SVG_TEXT         9
+#define SVG_IMAGE       10
+#define SVG_L_GRADIENT  11
+#define SVG_R_GRADIENT  12
+#define SVG_STOP        14
 
 typedef struct __svg_node __svg_node;
 struct __svg_node
@@ -238,6 +266,8 @@ struct __svg_sheet
    int                 type;
    char               *id;
    struct __svg_style *style;
+
+   struct svgc_dlist  *defs;
 
    double width, height;
 
@@ -352,6 +382,44 @@ struct __svg_image
    char   *title;
 };
 
+/* NOTE: this is common gradient struct */
+typedef struct __svg_gradient __svg_gradient;
+struct __svg_gradient
+{
+   int                 type;
+   char               *id;
+   struct __svg_style *style;
+
+   struct svgc_dlist  *stops;
+};
+
+/* NOTE: gradients are added into sheet list as defs */
+typedef struct __svg_l_gradient __svg_l_gradient;
+struct __svg_l_gradient
+{
+   int                 type;
+   char               *id;
+   struct __svg_style *style;
+
+   struct svgc_dlist  *stops;
+
+   char   *units;
+
+   double  x1, y1;
+   double  x2, y2;
+};
+
+/* NOTE: only for gradients */
+typedef struct __svg_stop __svg_stop;
+struct __svg_stop
+{
+   int                 type;
+   char               *id;
+   struct __svg_style *style;
+
+   double offset;
+};
+
 
 /***************************************************************
   SCENE is the list of SVG primitives.
@@ -377,6 +445,9 @@ extern struct __svg_node *__svg_new_sheet( double width,
                                            double  right_margin,
                                            double    top_margin,
                                            double bottom_margin );
+
+extern int __svg_sheet_add_definition( void              *sheet,
+                                       struct __svg_node *definition );
 
 /***************************************************************
   Creation of SVG primirives:
@@ -419,6 +490,17 @@ extern struct __svg_node *__svg_new_image( double  x,
                                            char   *href,
                                            char   *title );
 
+extern struct __svg_node *__svg_new_l_gradient( const char *units,
+                                                double      x1,
+                                                double      y1,
+                                                double      x2,
+                                                double      y2 );
+
+extern struct __svg_node *__svg_new_stop( double offset );
+
+extern int __svg_gradient_add_stop( void              *gradient,
+                                    struct __svg_stop *stop );
+
 
 /***************************************************************
   Adding some primitive to SCENE:
@@ -440,6 +522,11 @@ extern int __svg_set_stroke_dasharray( struct __svg_node *node, const char *dash
 extern int __svg_set_fill( struct __svg_node *node, const char *fill );
 extern int __svg_set_fill_rgb( struct __svg_node *node, int r, int g, int b );
 
+extern int __svg_set_stop_color( struct __svg_node *node, const char *stop_color );
+extern int __svg_set_stop_color_rgb( struct __svg_node *node, int r, int g, int b );
+
+extern int __svg_set_stop_opacity( struct __svg_node *node, double stop_opacity );
+
 extern int __svg_set_text_text( struct __svg_node *node, const char *text );
 extern int __svg_set_text_fill( struct __svg_node *node, const char *fill );
 extern int __svg_set_text_fill_rgb( struct __svg_node *node, int r, int g, int b );
@@ -459,6 +546,11 @@ extern void __svg_set_scene_stroke_dasharray( const char *dasharray );
 extern void __svg_set_scene_fill( const char *fill );
 extern void __svg_set_scene_fill_rgb( int r, int g, int b );
 
+extern void __svg_set_scene_stop_color( const char *stop_color );
+extern void __svg_set_scene_stop_color_rgb( int r, int g, int b );
+
+extern void __svg_set_scene_stop_opacity( double stop_opacity );
+
 extern void __svg_set_scene_text_fill( const char *fill );
 extern void __svg_set_scene_text_fill_rgb( int r, int g, int b );
 extern void __svg_set_scene_text_font_family( const char *family );
@@ -467,6 +559,7 @@ extern void __svg_set_scene_text_font_size( int size );
 
 /* Get node ID: */
 extern const char *__svg_get_node_id( struct __svg_node *node );
+extern char *__svg_create_node_url( struct __svg_node *node );
 
 
 /***************************************************************

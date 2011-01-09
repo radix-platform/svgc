@@ -2,7 +2,7 @@
 /* This file just defines the current version number of SVGC. */
 
 #define RELEASE "stable"
-#define VERSION "1.0.2"
+#define VERSION "1.0.3"
 
 /*
   Versioning for LIBTOOL:
@@ -18,5 +18,5 @@
      see: $(top_builddir)/libtool
  */
 #define LT_CURRENT "1"
-#define LT_REVISION "2"
+#define LT_REVISION "3"
 #define LT_AGE "0"

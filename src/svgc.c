@@ -619,11 +619,20 @@ static struct __svg_rgb
                      default_fill_rgb         = { 255, 255, 255 };
 static const char   *default_fill             = FILL_DEFAULT;
 
+static struct __svg_rgb 
+                     default_stop_color_rgb   = { 0, 0, 0 };
+static const char   *default_stop_color       = STOP_COLOR_DEFAULT;
+
+static double        default_stop_opacity     = STOP_OPACITY_DEFAULT;
+
 /* static buffer for stroke: */
 static char    stroke_buf[32];
 
 /* static buffer for fill: */
 static char    fill_buf[32];
+
+/* static buffer for stop color: */
+static char    stop_color_buf[32];
 
 static const char   *default_text_font_family = TEXT_FONT_FAMILY_DEFAULT;
 static int           default_text_font_size   = TEXT_FONT_SIZE_DEFAULT;
@@ -653,6 +662,12 @@ void __svg_set_scene_default_style()
    default_fill_rgb.b = 255;
 
    default_fill = FILL_DEFAULT;
+
+   default_stop_color_rgb.r = 0;
+   default_stop_color_rgb.g = 0;
+   default_stop_color_rgb.b = 0;
+
+   default_stop_opacity = STOP_OPACITY_DEFAULT;
 
    default_text_fill_rgb.r = 255;
    default_text_fill_rgb.g = 255;
@@ -715,6 +730,29 @@ void __svg_set_scene_fill_rgb( r, g, b )
    sprintf( fill_buf, "rgb(%03d,%03d,%03d)", r, g, b );
 
    default_fill = fill_buf;
+}
+
+void __svg_set_scene_stop_color( stop_color )
+   const char *stop_color;
+{
+   default_stop_color = stop_color;
+}
+void __svg_set_scene_stop_color_rgb( r, g, b )
+   int r, g, b;
+{
+   default_stop_color_rgb.r = r;
+   default_stop_color_rgb.g = g;
+   default_stop_color_rgb.b = b;
+
+   sprintf( stop_color_buf, "rgb(%03d,%03d,%03d)", r, g, b );
+
+   default_stop_color = stop_color_buf;
+}
+
+void __svg_set_scene_stop_opacity( stop_opacity )
+   double stop_opacity;
+{
+   default_stop_opacity = stop_opacity;
 }
 
 void __svg_set_scene_text_fill( fill )
@@ -814,12 +852,65 @@ __svg_new_fill()
 
 
 void 
+__svg_free_stop_color( sc )
+   struct __svg_stop_color *sc;
+{
+   if( !sc ) return;
+   if( sc->use_stop_color ) free( sc->use_stop_color );
+   free( sc );
+}
+
+struct __svg_stop_color *
+__svg_new_stop_color()
+{
+   struct __svg_stop_color *new = NULL;
+
+   new = malloc( sizeof( struct __svg_stop_color ) );
+
+   if( new == (struct __svg_stop_color *)NULL ) return( (struct __svg_stop_color *)NULL );
+
+   new->stop_color.r = default_stop_color_rgb.r;
+   new->stop_color.g = default_stop_color_rgb.g;
+   new->stop_color.b = default_stop_color_rgb.b;
+
+   new->use_stop_color   = __svg_str_dup( default_stop_color );
+
+   return( (struct __svg_stop_color *)new );
+}
+
+
+void 
+__svg_free_stop_opacity( so )
+   struct __svg_stop_opacity *so;
+{
+   if( !so ) return;
+   free( so );
+}
+
+struct __svg_stop_opacity *
+__svg_new_stop_opacity()
+{
+   struct __svg_stop_opacity *new = NULL;
+
+   new = malloc( sizeof( struct __svg_stop_opacity ) );
+
+   if( new == (struct __svg_stop_opacity *)NULL ) return( (struct __svg_stop_opacity *)NULL );
+
+   new->stop_opacity = default_stop_opacity;
+
+   return( (struct __svg_stop_opacity *)new );
+}
+
+
+void 
 __svg_free_style( style )
    struct __svg_style *style;
 {
    if( !style ) return;
-   if( style->stroke ) __svg_free_stroke( style->stroke );
-   if( style->fill   ) __svg_free_fill  ( style->fill   );
+   if( style->stroke       ) __svg_free_stroke       ( style->stroke       );
+   if( style->fill         ) __svg_free_fill         ( style->fill         );
+   if( style->stop_color   ) __svg_free_stop_color   ( style->stop_color   );
+   if( style->stop_opacity ) __svg_free_stop_opacity ( style->stop_opacity );
    free( style );
 }
 
@@ -832,9 +923,11 @@ __svg_new_style()
 
    if( new == (struct __svg_style *)NULL ) return( (struct __svg_style *)NULL );
 
-   new->stroke = __svg_new_stroke();
-   new->fill   = __svg_new_fill();
-   if( !new->stroke || !new->fill )
+   new->stroke       = __svg_new_stroke();
+   new->fill         = __svg_new_fill();
+   new->stop_color   = __svg_new_stop_color();
+   new->stop_opacity = __svg_new_stop_opacity();
+   if( !new->stroke || !new->fill || !new->stop_color || !new->stop_opacity )
    {
       __svg_free_style( new );
       return( (struct __svg_style *)NULL );
@@ -852,6 +945,15 @@ __svg_free_node( data )
    if( !node ) return;
    if( node->id ) free( node->id );
    if( node->style ) __svg_free_style( node->style );
+
+   if( node->type == SVG_SHEET  )
+   {
+      if( ((struct __svg_sheet *)node)->defs )
+      {
+         /* clear svgc_dlist */
+         free_svgc_dlist( ((struct __svg_sheet *)node)->defs, __svg_free_node );
+      }
+   }
 
    if( node->type == SVG_POLYGON )
       __svg_free_points( ((struct __svg_polygon *)node)->points );
@@ -879,6 +981,18 @@ __svg_free_node( data )
       if( ((struct __svg_image *)node)->title )
          free( ((struct __svg_image *)node)->title );
    }
+
+   if( node->type == SVG_L_GRADIENT  )
+   {
+      if( ((struct __svg_l_gradient *)node)->units )
+         free( ((struct __svg_l_gradient *)node)->units );
+      if( ((struct __svg_l_gradient *)node)->stops )
+      {
+         /* clear svgc_dlist */
+         free_svgc_dlist( ((struct __svg_l_gradient *)node)->stops, __svg_free_node );
+      }
+   }
+
    free( node );
 }
 
@@ -915,8 +1029,38 @@ __svg_new_sheet( width, height,
    new->top_margin    =    top_margin;
    new->bottom_margin = bottom_margin;
 
+   new->defs = create_svgc_dlist();
+   if( !new->defs )
+   {
+      if( new->id )    free( new->id );
+      if( new->style ) __svg_free_style( new->style );;
+      free( new );
+      return( (struct __svg_node *)NULL );
+   }
+
    return( (struct __svg_node *)new );
 }
+
+int
+__svg_sheet_add_definition( sheet, definition )
+   void               *sheet;
+   struct __svg_node  *definition;
+{
+   struct __svg_sheet *ps = (struct __svg_sheet *)sheet;
+   struct svgc_dlist_node *np = NULL;
+   int error = -1; /* EINVAL */
+
+   if( !ps || !ps->defs || !definition ) return( error );
+   error = 0;
+
+   if( !ps->defs ) return( error );
+
+   np = add_to_svgc_dlist_down( ps->defs, definition->id, (void *)definition );
+   if( np ) error = 1;
+
+   return( error );
+}
+
 
 struct __svg_node *
 __svg_new_line( x1, y1, x2, y2 )
@@ -1176,6 +1320,89 @@ __svg_new_image( x, y, width, height, href, title )
    return( (struct __svg_node *)new );
 }
 
+struct __svg_node *
+__svg_new_l_gradient( units, x1, y1, x2, y2 )
+   const char *units;
+   double      x1, y1;
+   double      x2, y2;
+{
+   struct __svg_l_gradient *new = NULL;
+   char                     buf[256];
+
+   new = (struct __svg_l_gradient *)malloc( sizeof( struct __svg_l_gradient ) );
+   if( new == (struct __svg_l_gradient *)NULL ) return( (struct __svg_node *)NULL );
+   memset( (void *)new, 0, sizeof( struct __svg_l_gradient ) );
+   new->type  = SVG_L_GRADIENT;
+   sprintf( buf, "lg%04d", current_id++ );
+   new->id    = __svg_str_dup( buf );
+   new->style = __svg_new_style();
+
+   if( !new->id || !new->style ) return( (struct __svg_node *)NULL );
+
+   if( !units || !units[0] ) new->units = __svg_str_dup( "objectBoundingBox" );
+   else                      new->units = __svg_str_dup( units );
+
+   new->x1 = x1;
+   new->y1 = y1;
+   new->x2 = x2;
+   new->y2 = y2;
+
+   new->stops = create_svgc_dlist();
+   if( !new->stops )
+   {
+      if( new->id )    free( new->id );
+      if( new->style ) __svg_free_style( new->style );;
+      if( new->units ) free( new->units );
+      free( new );
+      return( (struct __svg_node *)NULL );
+   }
+
+   return( (struct __svg_node *)new );
+}
+
+int
+__svg_gradient_add_stop( gradient, stop )
+   void               *gradient;
+   struct __svg_stop  *stop;
+{
+   struct __svg_gradient *pg = (struct __svg_gradient *)gradient;
+   struct svgc_dlist_node *np = NULL;
+   int error = -1; /* EINVAL */
+
+   if( !pg || !pg->stops || !stop ) return( error );
+   error = 0;
+
+   if( !pg->stops ) return( error );
+
+   np = add_to_svgc_dlist_down( pg->stops, stop->id, (void *)stop );
+   if( np ) error = 1;
+
+   return( error );
+}
+
+struct __svg_node *
+__svg_new_stop( offset )
+   double  offset;
+{
+   struct __svg_stop *new = NULL;
+   char               buf[256];
+
+   new = (struct __svg_stop *)malloc( sizeof( struct __svg_stop ) );
+   if( new == (struct __svg_stop *)NULL ) return( (struct __svg_node *)NULL );
+   memset( (void *)new, 0, sizeof( struct __svg_stop ) );
+   new->type  = SVG_STOP;
+   sprintf( buf, "stop%04d", current_id++ );
+   new->id    = __svg_str_dup( buf );
+   new->style = __svg_new_style();
+
+   if( !new->id || !new->style ) return( (struct __svg_node *)NULL );
+
+   if( offset > 1.0 || offset < 0.0   ) offset = 0.0;
+   new->offset = offset;
+
+   return( (struct __svg_node *)new );
+}
+
 /***************************************************************
   Style controls:
  ***************************************************************/
@@ -1330,6 +1557,69 @@ int __svg_set_fill_rgb( node, r, g, b )
       free( node->style->fill->use_fill );
    node->style->fill->use_fill = __svg_str_dup( buf );
    if( node->style->fill->use_fill ) error = 1;
+
+   return( error );
+}
+
+
+int __svg_set_stop_color( node, stop_color )
+   struct __svg_node *node;
+   const char        *stop_color;
+{
+   int error = -1; /* EINVAL */
+
+   if( !node ) return( error );
+   error = 0;
+
+   node->style->stop_color->stop_color.r = 0;
+   node->style->stop_color->stop_color.g = 0;
+   node->style->stop_color->stop_color.b = 0;
+
+   if( node->style->stop_color->use_stop_color )
+      free( node->style->stop_color->use_stop_color );
+   node->style->stop_color->use_stop_color = __svg_str_dup( stop_color );
+   if( node->style->stop_color->use_stop_color ) error = 1;
+
+   return( error );
+}
+
+int __svg_set_stop_color_rgb( node, r, g, b )
+   struct __svg_node *node;
+   int                r, g, b;
+{
+   char buf[256];
+   int  error = -1; /* EINVAL */
+
+   if( !node ) return( error );
+   error = 0;
+
+   node->style->stop_color->stop_color.r = r;
+   node->style->stop_color->stop_color.g = g;
+   node->style->stop_color->stop_color.b = b;
+
+   sprintf( buf, "rgb(%03d,%03d,%03d)", r, g, b );
+
+   if( node->style->stop_color->use_stop_color )
+      free( node->style->stop_color->use_stop_color );
+   node->style->stop_color->use_stop_color = __svg_str_dup( buf );
+   if( node->style->stop_color->use_stop_color ) error = 1;
+
+   return( error );
+}
+
+
+int __svg_set_stop_opacity( node, stop_opacity )
+   struct __svg_node *node;
+   double             stop_opacity;
+{
+   int error = -1; /* EINVAL */
+
+   if( !node ) return( error );
+   error = 0;
+
+   if( stop_opacity > 1.0 ||
+       stop_opacity < 0.0   ) stop_opacity = default_stop_opacity;
+   node->style->stop_opacity->stop_opacity = stop_opacity;
 
    return( error );
 }
@@ -1493,6 +1783,25 @@ __svg_get_node_id( node )
    return( (const char *)node->id );
 }
 
+/* Create node URL: */
+char *
+__svg_create_node_url( node )
+   struct __svg_node *node;
+{
+   int   len;
+   char *url = (char *)NULL;
+
+   if( !node->id || !node->id[0] ) return( url );
+
+   len = strlen( node->id ) + 7;
+   url = (char *)malloc( len );
+   if( !url ) return( url );
+
+   sprintf( url, "url(#%s)", node->id );
+
+   return( url );
+}
+
 
 /***************************************************************
   OUTPUT:
@@ -1634,6 +1943,82 @@ __svg_paint_cmd
    }
 }
 
+
+void 
+__svg_paint_stop
+( data )
+   void *data;
+{
+   struct __svg_node *node = (struct __svg_node *)data;
+
+   if( !node ) return;
+
+
+   fprintf( output_file, 
+"      <stop id=\"%s\" offset=\"%0.3f\" style=\"stop-color:%s;stop-opacity:%0.3f;\" />\n",
+         node->id, 
+         ((struct __svg_stop *)node)->offset,
+         node->style->stop_color->use_stop_color,
+         node->style->stop_opacity->stop_opacity );
+}
+
+
+void 
+__svg_paint_l_gradient
+( data )
+   void *data;
+{
+   struct __svg_node *node = (struct __svg_node *)data;
+
+   if( !node ) return;
+
+   fprintf( output_file, 
+"    <linearGradient\n"
+"          id=\"%s\" gradientUnits=\"%s\"\n"
+"          x1=\"%0.3f\"\n"
+"          y1=\"%0.3f\"\n"
+"          x2=\"%0.3f\"\n"
+"          y2=\"%0.3f\">\n",
+         node->id, 
+         ((struct __svg_l_gradient *)node)->units,
+         ((struct __svg_l_gradient *)node)->x1,
+         ((struct __svg_l_gradient *)node)->y1,
+         ((struct __svg_l_gradient *)node)->x2,
+         ((struct __svg_l_gradient *)node)->y2 );
+
+   if( ((struct __svg_l_gradient *)node)->stops )
+   {
+      /* paint svgc_dlist */
+      for_each_svgc_dlist_node_data( 
+         ((struct __svg_l_gradient *)node)->stops, __svg_paint_stop );
+   }
+
+   fprintf( output_file, 
+"    </linearGradient>\n" );
+}
+
+
+void 
+__svg_paint_defs( data )
+   void *data;
+{
+   struct __svg_node *node = (struct __svg_node *)data;
+
+   if( !node ) return;
+
+   switch( node->type )
+   {
+      default:
+         fprintf( output_file, "<node type=\"unknown\" />\n" );
+         break;
+
+      case SVG_L_GRADIENT:
+         __svg_paint_l_gradient( data );
+         break;
+   }
+}
+
+
 void 
 __svg_paint_node( data )
    void *data;
@@ -1669,15 +2054,24 @@ __svg_paint_node( data )
 "       left_margin=\"%d\"\n"
 "      right_margin=\"%d\"\n"
 "        top_margin=\"%d\"\n"
-"     bottom_margin=\"%d\" />\n"
-"  </defs>\n%s",
+"     bottom_margin=\"%d\" />\n",
          (int)((struct __svg_sheet *)node)->width,
          (int)((struct __svg_sheet *)node)->height,
          node->id, 
          (int)((struct __svg_sheet *)node)->left_margin,
          (int)((struct __svg_sheet *)node)->right_margin,
          (int)((struct __svg_sheet *)node)->top_margin,
-         (int)((struct __svg_sheet *)node)->bottom_margin,
+         (int)((struct __svg_sheet *)node)->bottom_margin );
+
+         if( ((struct __svg_sheet *)node)->defs )
+         {
+            /* paint svgc_dlist */
+            for_each_svgc_dlist_node_data( 
+               ((struct __svg_sheet *)node)->defs, __svg_paint_defs );
+         }
+
+         fprintf( output_file, 
+"  </defs>\n%s",
          group );
          break;
 

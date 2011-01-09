@@ -8,9 +8,9 @@ PKG=$TMP/package-svgc
 rm -rf $PKG
 
 # Version on the tarball
-VERSION=1.0.2
+VERSION=1.0.3
 # Version used for the Slackware package
-PKGVER=1.0.2
+PKGVER=1.0.3
 
 # I would use "-march=i486 -mtune=i686" here as usual, but with XINE it's all or nothing.
 # I'd rather have it work well for the i686/Athlon crowd than suck for everyone.

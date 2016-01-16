@@ -27,11 +27,11 @@ int current_id = 3700;
 /***************************************************************
   __svg_str_dup()
 
-     ≤Î‘’€Ô’‚ ﬂ–‹Ô‚Ï ‘€Ô ‘„—€ÿ⁄–‚– ·‚‡ﬁ⁄ÿ S ÿ ⁄ﬁﬂÿ‡„’‚ “ ›’’
-     ·ﬁ‘’‡÷ÿ‹ﬁ’ S.
-     
-     ≤ﬁ◊“‡–È–’‹ﬁ’ ◊›–Á’›ÿ’:
-        √⁄–◊–‚’€Ï ›– ·ﬁ◊‘–››ÎŸ ‘„—€ÿ⁄–‚.
+     –í—ã–¥–µ–ª—è–µ—Ç –ø–∞–º—è—Ç—å –¥–ª—è –¥—É–±–ª–∏–∫–∞—Ç–∞ —Å—Ç—Ä–æ–∫–∏ S –∏ –∫–æ–ø–∏—Ä—É–µ—Ç –≤ –Ω–µ–µ
+     —Å–æ–¥–µ—Ä–∂–∏–º–æ–µ S.
+
+     –í–æ–∑–≤—Ä–∞—â–∞–µ–º–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ:
+        –£–∫–∞–∑–∞—Ç–µ–ª—å –Ω–∞ —Å–æ–∑–¥–∞–Ω–Ω—ã–π –¥—É–±–ª–∏–∫–∞—Ç.
  ***************************************************************/
 char *
 __svg_str_dup( s )
@@ -385,8 +385,8 @@ __svg_add_vlineto_cmd( cmds, abs, y )
   the control point at the beginning of the curve and (x2,y2) as the control 
   point at the end of the curve. C (uppercase) indicates that absolute 
   coordinates will follow; c (lowercase) indicates that relative coordinates 
-  will follow. Multiple sets of coordinates may be specified to draw a 
-  polybezier. At the end of the command, the new current point becomes the 
+  will follow. Multiple sets of coordinates may be specified to draw a
+  polybezier. At the end of the command, the new current point becomes the
   final (x,y) coordinate pair used in the polybezier.
 
   Args: (x1 y1 x2 y2 x y)+
@@ -432,7 +432,7 @@ __svg_add_curveto_cmd( cmds, abs, x1, y1, x2, y2, x, y )
   S (uppercase) indicates that absolute coordinates will follow; s (lowercase) 
   indicates that relative coordinates will follow. Multiple sets of coordinates 
   may be specified to draw a polybezier. At the end of the command, the new 
-  current point becomes the final (x,y) coordinate pair used in the polybÈzier.
+  current point becomes the final (x,y) coordinate pair used in the polybezier.
 
   Args: (x2 y2 x y)+
  */
@@ -2145,17 +2145,16 @@ __svg_paint_node( data )
          if( output_group ) group = "  <g id=\"layer0\">\n";
          else               group = "";
          fprintf( output_file, 
-"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" 
+"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" 
 "<!-- Created with __svg_lib (http://www._kxLab.com/) -->\n"
 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n"
 "  \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
 "<svg\n"
 "    xmlns:svg=\"http://www.w3.org/2000/svg\"\n"
-"    xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
-"    xmlns=\"http://www.w3.org/2000/svg\"\n"
-"  version=\"1.1\"\n"
-"    width=\"%d\"\n"
-"   height=\"%d\">\n"
+"  xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
+"        xmlns=\"http://www.w3.org/2000/svg\"\n"
+"      viewBox=\"0 0 %d %d\"\n"
+"      version=\"1.1\">\n"
 "  <defs>\n"
 "    <sheet      id=\"%s\"\n"
 "       left_margin=\"%d\"\n"

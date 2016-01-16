@@ -35,5 +35,5 @@ fi
 
 if test "$echo_libs" = "yes"; then
    echo $svgc_libs
-fi      
+fi
 

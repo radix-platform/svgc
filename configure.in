@@ -31,7 +31,7 @@ dnl ============================================================
 dnl ============================================================
 AC_MSG_CFG_PART(Init Automake environment)
 
-AM_INIT_AUTOMAKE(svgc, 1.0.4)
+AM_INIT_AUTOMAKE(svgc, 1.0.5)
 
 AM_CONFIG_HEADER(config.h)
 
@@ -78,12 +78,12 @@ dnl ============================================================
 AC_MSG_CFG_PART(Test for Build Tools)
 
 dnl ============================================================
-dnl  ø‡ﬁ“’‡⁄– “’‡·ÿŸ ﬂ‡ﬁ”‡–‹‹
+dnl  –ü—Ä–æ–≤–µ—Ä–∫–∞ –≤–µ—Ä—Å–∏–π –ø—Ä–æ–≥—Ä–∞–º–º
 dnl ============================================================
 dnl AC_REQUIRE([AC_CHECK_TOOL_PREFIX])dnl
 
 dnl ============================================================
-dnl Check GCC ( AC_CHECK_PROG_VERSION() ›–Âﬁ‘ÿ‚·Ô “ acsite.m4 )
+dnl Check GCC ( AC_CHECK_PROG_VERSION() –Ω–∞—Ö–æ–¥–∏—Ç—Å—è –≤ acsite.m4 )
 dnl ============================================================
 AC_CHECK_PROG_VERSION(CC, ${ac_tool_prefix}gcc ${ac_tool_prefix}cc, -v,
   [version \([egcygnustpi-]*[0-9.]*\)],
@@ -92,9 +92,9 @@ AC_CHECK_PROG_VERSION(CC, ${ac_tool_prefix}gcc ${ac_tool_prefix}cc, -v,
 dnl
 dnl set gcc_version - variable
 dnl ==========================
-dnl ’·€ÿ ÿ·ﬂﬁ€Ï◊ﬁ“–‚Ï AC_CHECK_PROG_VER() ‚ﬁ · ﬂﬁ‹ﬁÈÏÓ ⁄ﬁ‹–›‘Î
-dnl sed 's/,.*//' ›–‘ﬁ „‘–€ÿ‚Ï ", ok" “ ⁄ﬁ›Ê’ $ac_prog_version
-dnl ·€’‘„ÓÈÿ‹ ﬁ—‡–◊ﬁ‹:
+dnl –µ—Å–ª–∏ –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å AC_CHECK_PROG_VER() —Ç–æ —Å –ø–æ–º–æ—â—å—é –∫–æ–º–∞–Ω–¥—ã
+dnl sed 's/,.*//' –Ω–∞–¥–æ —É–¥–∞–ª–∏—Ç—å ", ok" –≤ –∫–æ–Ω—Ü–µ $ac_prog_version
+dnl —Å–ª–µ–¥—É—é—â–∏–º –æ–±—Ä–∞–∑–æ–º:
 dnl    gcc_version=`echo $ac_prog_version | sed 's/,.*//'`  
 dnl ============================================================
 gcc_version=$ac_prog_version
@@ -124,9 +124,9 @@ AC_CHECK_PROG_VERSION(MAKE, make gmake gnumake, --version,
 dnl
 dnl set make_version - variable
 dnl ==========================
-dnl ’·€ÿ ÿ·ﬂﬁ€Ï◊ﬁ“–‚Ï AC_CHECK_PROG_VER() ‚ﬁ · ﬂﬁ‹ﬁÈÏÓ ⁄ﬁ‹–›‘Î
-dnl sed 's/,.*//' ›–‘ﬁ „‘–€ÿ‚Ï ", ok" “ ⁄ﬁ›Ê’ $ac_prog_version
-dnl ·€’‘„ÓÈÿ‹ ﬁ—‡–◊ﬁ‹:
+dnl –µ—Å–ª–∏ –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å AC_CHECK_PROG_VER() —Ç–æ —Å –ø–æ–º–æ—â—å—é –∫–æ–º–∞–Ω–¥—ã
+dnl sed 's/,.*//' –Ω–∞–¥–æ —É–¥–∞–ª–∏—Ç—å ", ok" –≤ –∫–æ–Ω—Ü–µ $ac_prog_version
+dnl —Å–ª–µ–¥—É—é—â–∏–º –æ–±—Ä–∞–∑–æ–º:
 dnl    make_version=`echo $ac_prog_version | sed 's/,.*//'`  
 dnl ============================================================
 make_version=$ac_prog_version
@@ -172,8 +172,8 @@ AC_PATH_PROG_LN_S
 AC_SUBST(LN)
 AC_SUBST(LN_S)
 
-dnl  Ω–‹ ›„÷’› ÿ·ﬂﬁ€›Ô’‹ÎŸ ‰–Ÿ€ pwd. ≤·‚‡ﬁ’››ÎŸ "pwd -P" ›–·
-dnl  ›’ „·‚‡–ÿ“–’‚( ÿ◊ ·ﬁﬁ—‡–÷’›ÿŸ ﬂ’‡’›ﬁ·ÿ‹ﬁ·‚ÿ ) .
+dnl  –ù–∞–º –Ω—É–∂–µ–Ω –∏—Å–ø–æ–ª–Ω—è–µ–º—ã–π —Ñ–∞–π–ª pwd. –í—Å—Ç—Ä–æ–µ–Ω–Ω—ã–π "pwd -P" –Ω–∞—Å
+dnl  –Ω–µ —É—Å—Ç—Ä–∞–∏–≤–∞–µ—Ç( –∏–∑ —Å–æ–æ–±—Ä–∞–∂–µ–Ω–∏–π –ø–µ—Ä–µ–Ω–æ—Å–∏–º–æ—Å—Ç–∏ ) .
 AC_PATH_PROG(PWD_P, pwd, no)
 if test "$PWD_P" = no; then
    AC_MSG_ERROR(********   A pwd binary could not be found.)
@@ -251,11 +251,11 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 dnl
-dnl ◊›–Á’›ÿ’ ·€’‘„ÓÈ’Ÿ ﬂ’‡’‹’››ﬁŸ ‡–“›ﬁ l, ‚–⁄ ⁄–⁄ ‹Î Âﬁ‚ÿ‹
-dnl ÿ·ﬂﬁ€Ï◊ﬁ“–‚Ï LIBTOOL; “ ﬂ‡ﬁ‚ÿ“›ﬁ‹ ·€„Á–’ ‹Î ›–ﬂÿ·–€ÿ —Î
+dnl –∑–Ω–∞—á–µ–Ω–∏–µ —Å–ª–µ–¥—É—é—â–µ–π –ø–µ—Ä–µ–º–µ–Ω–Ω–æ–π —Ä–∞–≤–Ω–æ l, —Ç–∞–∫ –∫–∞–∫ –º—ã —Ö–æ—Ç–∏–º
+dnl –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å LIBTOOL; –≤ –ø—Ä–æ—Ç–∏–≤–Ω–æ–º —Å–ª—É—á–∞–µ –º—ã –Ω–∞–ø–∏—Å–∞–ª–∏ –±—ã
 dnl SVGC_LIBTOOL_SUFFIX_PREFIX=
 dnl
-dnl *** “ﬁﬁ—È’, Ì‚ﬁ ﬂﬁ€’◊›ﬁ “Î›’·‚ÿ “ ﬁﬂÊÿÿ ./configure ***
+dnl *** –≤–æ–æ–±—â–µ, —ç—Ç–æ –ø–æ–ª–µ–∑–Ω–æ –≤—ã–Ω–µ—Å—Ç–∏ –≤ –æ–ø—Ü–∏–∏ ./configure ***
 dnl
 SVGC_LIBTOOL_SUFFIX_PREFIX=l
 AC_SUBST(SVGC_LIBTOOL_SUFFIX_PREFIX)
@@ -304,7 +304,7 @@ AC_MSG_CFG_PART(Build Parameters)
 dnl
 dnl  Check for system header files.
 dnl  =============================
-dnl  /* GetText Ì‚ﬁ ﬂ‡ﬁ“’‡ÿ€. ∞ ‹Î ‘’€–’‹ ‘€Ô ·’—Ô. */
+dnl  /* GetText —ç—Ç–æ –ø—Ä–æ–≤–µ—Ä–∏–ª. –ê –º—ã –¥–µ–ª–∞–µ–º –¥–ª—è —Å–µ–±—è. */
 AC_HEADER_STDC
 AC_HEADER_TIME
 AC_CHECK_HEADERS(unistd.h stdlib.h stdio.h string.h)

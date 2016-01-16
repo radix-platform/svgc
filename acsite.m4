@@ -1,6 +1,4 @@
 
-divert(-1)
-
 dnl ============================================================
 dnl Display Configuration Headers
 dnl 

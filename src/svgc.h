@@ -364,6 +364,8 @@ struct __svg_text
    double  x, y;
    char   *text;
 
+   double  angle, x0, y0;
+
    int     font_size;
    char   *font_family;
    char   *fill;
@@ -559,6 +561,7 @@ extern int __svg_set_text_fill( struct __svg_node *node, const char *fill );
 extern int __svg_set_text_fill_rgb( struct __svg_node *node, int r, int g, int b );
 extern int __svg_set_text_font_family( struct __svg_node *node, const char *family );
 extern int __svg_set_text_font_size( struct __svg_node *node, int size );
+extern int __svg_set_text_rotation( struct __svg_node *node, double angle, double x0, double y0 );
 
 
 /* Set Global Default Values: */

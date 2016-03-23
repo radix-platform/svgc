@@ -1777,6 +1777,23 @@ int __svg_set_text_font_size( node, size )
    return( error );
 }
 
+int __svg_set_text_rotation( node, angle, x0, y0 )
+   struct __svg_node *node;
+   double             angle, x0, y0;
+{
+   int  error = -1; /* EINVAL */
+
+   if( !node ) return( error );
+   error = 0;
+
+   ((__svg_text *)node)->angle = angle;
+   ((__svg_text *)node)->x0    = x0;
+   ((__svg_text *)node)->y0    = y0;
+   error = 1;
+
+   return( error );
+}
+
 
 
 void __svg_free_scene( scene )
@@ -2330,23 +2347,43 @@ __svg_paint_node( data )
          break;
 
       case SVG_TEXT     :
-         fprintf( output_file, 
+         {
+            double angle, x0, y0;
+
+            angle = ((struct __svg_text *)node)->angle;
+            x0    = ((struct __svg_text *)node)->x0;
+            y0    = ((struct __svg_text *)node)->y0;
+
+            fprintf( output_file, 
 "    <text\n"
 "          id=\"%s\"\n"
 "           x=\"%0.3f\"\n"
-"           y=\"%0.3f\"\n"
+"           y=\"%0.3f\"\n",
+            node->id,
+            ((struct __svg_text *)node)->x,
+            ((struct __svg_text *)node)->y );
+
+            if( (int)angle != 0 )
+            {
+               if( x0 == 0.0 ) x0 = ((struct __svg_text *)node)->x;
+               if( y0 == 0.0 ) y0 = ((struct __svg_text *)node)->y;
+
+               fprintf( output_file, 
+"   transform=\"rotate(%0.3f %0.3f, %0.3f)\"\n",
+               angle, x0, y0 );
+            }
+
+            fprintf( output_file, 
 " font-family=\"%s\"\n"
 "   font-size=\"%d\"\n"
 "        fill=\"%s\" >\n"
 "      %s\n"
 "    </text>\n",
-         node->id, 
-         ((struct __svg_text *)node)->x,
-         ((struct __svg_text *)node)->y,
-         ((struct __svg_text *)node)->font_family,
-         ((struct __svg_text *)node)->font_size,
-         ((struct __svg_text *)node)->fill,
-         ((struct __svg_text *)node)->text );
+            ((struct __svg_text *)node)->font_family,
+            ((struct __svg_text *)node)->font_size,
+            ((struct __svg_text *)node)->fill,
+            ((struct __svg_text *)node)->text );
+         }
          break;
 
       case SVG_IMAGE    :

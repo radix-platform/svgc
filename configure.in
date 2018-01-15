@@ -31,7 +31,7 @@ dnl ============================================================
 dnl ============================================================
 AC_MSG_CFG_PART(Init Automake environment)
 
-AM_INIT_AUTOMAKE(svgc, 1.0.6)
+AM_INIT_AUTOMAKE(svgc, 1.0.7)
 
 AM_CONFIG_HEADER(config.h)
 
@@ -87,7 +87,7 @@ dnl Check GCC ( AC_CHECK_PROG_VERSION() находится в acsite.m4 )
 dnl ============================================================
 AC_CHECK_PROG_VERSION(CC, ${ac_tool_prefix}gcc ${ac_tool_prefix}cc, -v,
   [version \([egcygnustpi-]*[0-9.]*\)],
-  [*gcc-2.9[5-9].*|*2.8.[1-9]*|*2.9|*2.9.[0-9]*|2.9[5-9]*|3.[0-9]*|4.[0-9]*|cygnus-2.9[1-9]*|gcc-2.9[5-9]|gcc-2.1[0-9][0-9]|sgicc-*],
+  [*gcc-2.9[5-9].*|*2.8.[1-9]*|*2.9|*2.9.[0-9]*|2.9[5-9]*|3.[0-9]*|[4-7].[0-9]*|cygnus-2.9[1-9]*|gcc-2.9[5-9]|gcc-2.1[0-9][0-9]|sgicc-*],
   critic_missing=gcc)
 dnl
 dnl set gcc_version - variable
@@ -120,7 +120,7 @@ dnl Check MAKE
 dnl ============================================================
 AC_CHECK_PROG_VERSION(MAKE, make gmake gnumake, --version,
   [GNU Make[^0-9]*\([0-9][0-9.]*\)],
-  [3.79* | 3.[89]*], critic_missing="$critic_missing make")
+  [3.79* | 3.[89]* | 4.[0-9]*], critic_missing="$critic_missing make")
 dnl
 dnl set make_version - variable
 dnl ==========================

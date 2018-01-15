@@ -8,7 +8,7 @@
 #ifndef _VERSION_C_
 #define _VERSION_C_
 
-#define _SVGC_VERSION 0x100206
+#define _SVGC_VERSION 0x100207
 
 typedef struct {
     const int   v_hex;
@@ -32,14 +32,14 @@ extern _svgc_version_t _svgc_version;
 #undef  _VERSION_C_AS_HEADER_
 
 _svgc_version_t _svgc_version = {
-    0x100206,
-    "1.0.6",
-    "1.0.6 (23-Mar-2016)",
-    "This is _svgc, Version 1.0.6 (23-Mar-2016)",
-    "_svgc 1.0.6 (23-Mar-2016)",
-    "_svgc/1.0.6",
-    "@(#)_svgc 1.0.6 (23-Mar-2016)",
-    "$Id: _svgc 1.0.6 (23-Mar-2016) $"
+    0x100207,
+    "1.0.7",
+    "1.0.7 (15-Jan-2018)",
+    "This is _svgc, Version 1.0.7 (15-Jan-2018)",
+    "_svgc 1.0.7 (15-Jan-2018)",
+    "_svgc/1.0.7",
+    "@(#)_svgc 1.0.7 (15-Jan-2018)",
+    "$Id: _svgc 1.0.7 (15-Jan-2018) $"
 };
 
 #endif /* _VERSION_C_AS_HEADER_ */

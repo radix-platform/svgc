@@ -17,11 +17,11 @@ cat <<EOF
 
    NOTE     :
               Option '--ldflags' need for find shared
-	      libsvgc.so.@VERSION@ library.
+              libsvgc.so.@VERSION@ library.
 
-	      If you use svgc in Cygwin on Windows NT/2000/XP;
+              If you use svgc in Cygwin on Windows NT/2000/XP;
               then add path "${exec_prefix}/bin"
-	      to system variable PATH.
+              to system variable PATH.
 
 EOF
    exit $1

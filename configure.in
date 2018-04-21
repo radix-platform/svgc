@@ -31,7 +31,7 @@ dnl ============================================================
 dnl ============================================================
 AC_MSG_CFG_PART(Init Automake environment)
 
-AM_INIT_AUTOMAKE(svgc, 1.0.7)
+AM_INIT_AUTOMAKE(svgc, 1.0.8)
 
 AM_CONFIG_HEADER(config.h)
 

@@ -8,9 +8,9 @@ PKG=$TMP/package-svgc
 rm -rf $PKG
 
 # Version on the tarball
-VERSION=1.0.7
+VERSION=1.0.8
 # Version used for the Slackware package
-PKGVER=1.0.7
+PKGVER=1.0.8
 
 # I would use "-march=i486 -mtune=i686" here as usual, but with XINE it's all or nothing.
 # I'd rather have it work well for the i686/Athlon crowd than suck for everyone.
@@ -33,7 +33,7 @@ fi
 PKGARCH=$ARCH
 
 cd $TMP
-rm -rf 
+rm -rf $PKG
 tar xvzf $CWD/svgc-$VERSION.tar.gz
 mkdir ./build-svgc
 cd ./build-svgc
@@ -55,4 +55,4 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 
 # Build the package:
 cd $TMP/package-svgc
-makepkg -l y -c n ../svgc-$PKGVER-$PKGARCH-$BUILD.tgz
+makepkg -l y -c n ../svgc-$PKGVER-$PKGARCH-$BUILD.txz

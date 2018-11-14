@@ -10,6 +10,7 @@ bin_SCRIPTS = svgc-config
 
 
 svgc-config: make-svgc-config head tail
+	chmod +x ./make-svgc-config
 	./make-svgc-config
 
 clean-am:

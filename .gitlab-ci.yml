@@ -1,0 +1,35 @@
+
+#
+# Defines stages which are to be executed
+#
+stages:
+  - build
+
+#
+# Stage "build":
+#
+run-build:
+  stage: build
+  script:
+    - ./configure --prefix=/usr
+    - make
+    - make dist
+    - cd slackware
+    - ./svgc.x86_32.SlackBuild
+    - ./svgc.x86_64.SlackBuild
+    - cd ..
+
+#
+# This stage is only executed for new tags
+#
+  only:
+    - tags
+
+#
+# The files which are to be made available in GitLab:
+#
+artifacts:
+  paths:
+    - svgc-*.tar.gz
+    - svgc-*.txz
+  expire_in: 1 week

@@ -3,7 +3,7 @@
 cd ..
 
 libtoolize --force --copy
-aclocal
+aclocal --install -I m4 --force
 autoheader
-automake --gnu --add-missing --copy
-autoconf
+automake --gnu --add-missing --copy --force-missing
+autoconf --force

@@ -1,9 +1,10 @@
 #!/bin/sh
 
-TMP=~/tmp
+CWD=`pwd`
 
-CWD=$(pwd)
+TMP=$CWD/tmp
 TMP=${TMP:-/tmp}
+mkdir -p $TMP
 PKG=$TMP/package-svgc
 rm -rf $PKG
 
@@ -14,7 +15,7 @@ PKGVER=1.0.8
 
 # I would use "-march=i486 -mtune=i686" here as usual, but with XINE it's all or nothing.
 # I'd rather have it work well for the i686/Athlon crowd than suck for everyone.
-ARCH=${ARCH:-i486}
+ARCH=${ARCH:-i686}
 TARGET=${TARGET:-$ARCH-pc-linux-gnu}
 BUILD=1
 DISTRO=${DISTRO:-slackware}
@@ -34,7 +35,7 @@ PKGARCH=$ARCH
 
 cd $TMP
 rm -rf $PKG
-tar xvzf $CWD/svgc-$VERSION.tar.gz
+tar xvzf $CWD/../svgc-$VERSION.tar.gz
 mkdir ./build-svgc
 cd ./build-svgc
 CC=gcc CFLAGS="$SLKCFLAGS" \
@@ -55,4 +56,6 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 
 # Build the package:
 cd $TMP/package-svgc
-makepkg -l y -c n ../svgc-$PKGVER-$PKGARCH-$BUILD.txz
+/sbin/makepkg -l y -c n ../svgc-$PKGVER-$PKGARCH-$BUILD.txz
+
+mv $TMP/svgc-$PKGVER-$PKGARCH-$BUILD.txz $CWD/../

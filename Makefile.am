@@ -1,4 +1,5 @@
 
+ACLOCAL_AMFLAGS = -I m4
 
 #
 # In compilation order.

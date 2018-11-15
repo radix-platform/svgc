@@ -44,6 +44,7 @@ packages:
   # The files which are to be made available in GitLab:
   #
   artifacts:
+    name: "svgc-packages"
     paths:
       - svgc-*.tar.gz
       - svgc-*.txz

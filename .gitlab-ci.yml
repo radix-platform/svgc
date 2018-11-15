@@ -40,36 +40,10 @@ build-packages:
   #only:
   #  - tags
 
-#  #
-#  # The files which are to be made available in GitLab:
-#  #
-#  artifacts:
-#    paths:
-#      - svgc-*.tar.gz
-#      - svgc-*.txz
-
-#=============
-#before_script:
-#  - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-#  - chmod 644 ~/.ssh/known_hosts
-#  - chmod 644 ~/.ssh/known_hosts
-#
-#  ##
-#  ## Optionally, if you will be using any Git commands, set the user name and
-#  ## email.
-#  ##
-#  #- git config --global user.email "darth@empire.com"
-#  #- git config --global user.name "Darth Vader"
-#
-#Test SSH:
-#  tags:
-#  - Slackware64
-#  - x86_64
-#
-#  script:
-#  # try to connect to GitLab.com
-#  - ssh gitlab@gitlab.radix.pro
-#
-#  # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
-#  - git clone gitlab@gitlab.radix.pro:kx/svgc.git
-
+  #
+  # The files which are to be made available in GitLab:
+  #
+  artifacts:
+    paths:
+      - svgc-*.tar.gz
+      - svgc-*.txz

@@ -47,7 +47,7 @@ before_script:
 Test SSH:
   script:
   # try to connect to GitLab.com
-  - ssh git@gitlab.com
+  - ssh gitlab@gitlab.radix.pro
 
   # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
   - git clone gitlab@gitlab.radix.pro:kx/svgc.git

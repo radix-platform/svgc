@@ -35,10 +35,10 @@ packages:
     - cd ..
 
   #
-  # This stage is only executed for new tags
+  # This stage is only executed for new tags (requires more DevOps activities)
   #
-  only:
-    - tags
+  #only:
+  #  - tags
 
   #
   # The files which are to be made available in GitLab:

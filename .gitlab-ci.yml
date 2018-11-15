@@ -46,7 +46,7 @@ before_script:
 
 Test SSH:
   tags:
-  - Slackware64
+  - Slackware
   - x86_64
 
   script:

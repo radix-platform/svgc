@@ -182,7 +182,7 @@ fi
 AC_PATH_PROGS(SED, sed gsed, no, /usr/local/bin:/usr/bin:/bin:$PATH)
 if test "$SED" != no; then
 AC_CHECK_PROG_VERSION(SED, $SED, --version,
-  [GNU sed version \([0-9]*\.[0-9.]*\)],
+  [sed (GNU sed) \([0-9]*\.[0-9.]*\)],
   [3.0[2-9]*|3.[1-9]*|[4-9]*],
   SED=: aux_missing="$aux_missing sed")
 sed_version=$ac_prog_version

@@ -16,11 +16,13 @@ before_script:
 #
 stages:
   - build
+  - source-distribution
+  - slackware-packages
 
 #
 # Stage "build":
 #
-packages:
+build-job:
   stage: build
   tags:
   - Slackware64
@@ -28,23 +30,51 @@ packages:
   script:
     - ./configure --prefix=/usr
     - make
-    - make dist
-    - cd slackware
-    - ./svgc.x86_32.SlackBuild
-    - ./svgc.x86_64.SlackBuild
-    - cd ..
-
   #
   # This stage is only executed for new tags (requires more DevOps activities)
   #
   #only:
   #  - tags
 
+dist-job:
+  stage: source_distribution
+  tags:
+  - Slackware64
+  - x86_64
+  script:
+    - make dist
   #
   # The files which are to be made available in GitLab:
   #
   artifacts:
-    name: "svgc-packages"
+    name: "source-distribution"
     paths:
       - svgc-*.tar.gz
+  #
+  # This stage is only executed for new tags (requires more DevOps activities)
+  #
+  #only:
+  #  - tags
+
+slackware-pkgs-job:
+  stage: slackware_packages
+  tags:
+  - Slackware64
+  - x86_64
+  script:
+    - cd slackware
+    - ./svgc.x86_32.SlackBuild
+    - ./svgc.x86_64.SlackBuild
+    - cd ..
+  #
+  # The files which are to be made available in GitLab:
+  #
+  artifacts:
+    name: "slackware-packages"
+    paths:
       - svgc-*.txz
+  #
+  # This stage is only executed for new tags (requires more DevOps activities)
+  #
+  #only:
+  #  - tags

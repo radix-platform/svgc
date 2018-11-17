@@ -42,9 +42,9 @@ dist-job:
   - Slackware64
   - x86_64
   script:
+    - ./configure --prefix=/usr
+    - make
     - make dist
-  dependencies:
-    - build-job
   #
   # The files which are to be made available in GitLab:
   #
@@ -64,12 +64,13 @@ slackware-pkgs-job:
   - Slackware64
   - x86_64
   script:
+    - ./configure --prefix=/usr
+    - make
+    - make dist
     - cd slackware
     - ./svgc.x86_32.SlackBuild
     - ./svgc.x86_64.SlackBuild
     - cd ..
-  dependencies:
-    - dist-job
   #
   # The files which are to be made available in GitLab:
   #

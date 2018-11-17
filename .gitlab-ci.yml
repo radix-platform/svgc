@@ -17,7 +17,7 @@ before_script:
 stages:
   - build
   - source-distribution
-  - slackware-packages
+  - packages
 
 #
 # Stage "build":
@@ -59,7 +59,7 @@ source-distribution:
   #  - tags
 
 slackware-packages:
-  stage: slackware-packages
+  stage: packages
   tags:
   - Slackware64
   - x86_64

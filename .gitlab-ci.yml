@@ -36,7 +36,7 @@ build-job:
   #only:
   #  - tags
 
-dist-job:
+source-distribution:
   stage: source-distribution
   tags:
   - Slackware64
@@ -58,7 +58,7 @@ dist-job:
   #only:
   #  - tags
 
-slackware-pkgs-job:
+slackware-packages:
   stage: slackware-packages
   tags:
   - Slackware64

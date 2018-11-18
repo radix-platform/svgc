@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with __svg_lib (https://gitlab.radix.pro/kx/svgc/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+    width="350"
+   height="380">
+  <defs>
+    <sheet      id="svg3700"
+       left_margin="10"
+      right_margin="10"
+        top_margin="10"
+     bottom_margin="10" />
+  </defs>
+    <rect
+          id="rect3701"
+           x="75.000"
+           y="29.000"
+       width="50.000"
+      height="2.000"
+       style="fill:rgb(000,000,000);stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3702"
+          x1="76.000"
+          y1="29.000"
+          x2="82.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3703"
+          x1="82.000"
+          y1="29.000"
+          x2="88.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3704"
+          x1="88.000"
+          y1="29.000"
+          x2="94.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3705"
+          x1="94.000"
+          y1="29.000"
+          x2="100.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3706"
+          x1="100.000"
+          y1="29.000"
+          x2="106.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3707"
+          x1="106.000"
+          y1="29.000"
+          x2="112.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3708"
+          x1="112.000"
+          y1="29.000"
+          x2="118.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3709"
+          x1="118.000"
+          y1="29.000"
+          x2="124.000"
+          y2="23.000"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3710"
+          x1="100.000"
+          y1="30.000"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3711"
+          x1="100.000"
+          y1="30.000"
+          x2="100.000"
+          y2="280.000"
+       style="stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <path
+          id="path3712"
+           d="M 276.777,206.777 A 250.000,250.000 0.000 0,1 35.295,271.481"
+       style="fill:none;stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <line
+          id="line3713"
+          x1="121.077"
+          y1="306.506"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <line
+          id="line3714"
+          x1="275.000"
+          y1="333.109"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <line
+          id="line3715"
+          x1="225.000"
+          y1="342.506"
+          x2="180.833"
+          y2="272.006"
+       style="stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <line
+          id="line3716"
+          x1="225.000"
+          y1="342.506"
+          x2="266.971"
+          y2="319.203"
+       style="stroke:rgb(099,099,099);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:3,2;" />
+    <path
+          id="path3717"
+           d="M 130.000,81.962 A 60.000,60.000 0.000 0,1 100.000,90.000"
+       style="fill:none;stroke:black;stroke-width:0.500;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3718"
+          x1="138.397"
+          y1="296.506"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3719"
+          x1="302.942"
+          y1="201.506"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3720"
+          x1="175.000"
+          y1="159.904"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3721"
+          x1="225.000"
+          y1="336.506"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:2.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3722"
+          x1="250.981"
+          y1="231.506"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:2.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3723"
+          x1="210.000"
+          y1="220.526"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:2.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3724"
+          x1="186.029"
+          y1="269.006"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:2.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <line
+          id="line3725"
+          x1="263.971"
+          y1="314.006"
+          x2="225.000"
+          y2="246.506"
+       style="stroke:black;stroke-width:2.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <path
+          id="path3726"
+           d="M 142.496,297.604 L 133.201,299.506 L 139.496,292.408 S 139.263,296.006 142.496,297.604 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3727"
+           d="M 228.000,333.506 L 225.000,342.506 L 222.000,333.506 S 225.000,335.506 228.000,333.506 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3728"
+           d="M 190.127,270.104 L 180.833,272.006 L 187.127,264.908 S 186.895,268.506 190.127,270.104 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3729"
+           d="M 265.069,309.908 L 266.971,319.203 L 259.873,312.908 S 263.471,313.140 265.069,309.908 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3730"
+           d="M 298.844,200.408 L 308.138,198.506 L 301.844,205.604 S 302.076,202.006 298.844,200.408 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3731"
+           d="M 246.883,230.408 L 256.177,228.506 L 249.883,235.604 S 250.115,232.006 246.883,230.408 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3732"
+           d="M 173.902,164.002 L 172.000,154.708 L 179.098,161.002 S 175.500,160.770 173.902,164.002 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3733"
+           d="M 208.902,224.624 L 207.000,215.329 L 214.098,221.624 S 210.500,221.392 208.902,224.624 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:1.000;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <path
+          id="path3734"
+           d="M 123.804,83.229 L 130.000,81.962 L 125.804,86.694 S 125.670,84.462 123.804,83.229 Z"
+       style="fill:rgb(255,255,255);stroke:rgb(000,000,000);stroke-width:0.500;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;" />
+    <text
+          id="text3735"
+           x="138.397"
+           y="311.506"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">B</tspan>
+    </text>
+    <text
+          id="text3736"
+           x="193.029"
+           y="284.006"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">G<tspan dy="4" font-family="Georgia" font-size="10">&#x3c4;</tspan></tspan>
+    </text>
+    <text
+          id="text3737"
+           x="270.971"
+           y="314.006"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">G<tspan dy="4" font-family="Georgia" font-size="10">n</tspan></tspan>
+    </text>
+    <text
+          id="text3738"
+           x="225.000"
+           y="356.506"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">G</tspan>
+    </text>
+    <text
+          id="text3739"
+           x="205.000"
+           y="246.506"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-weight="bold" font-style="oblique">M</tspan>
+    </text>
+    <text
+          id="text3740"
+           x="255.981"
+           y="243.506"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-family="Georgia" font-style="oblique">&#x3c4;</tspan>
+    </text>
+    <text
+          id="text3741"
+           x="215.000"
+           y="215.526"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-family="Georgia" font-style="oblique">n</tspan>
+    </text>
+    <text
+          id="text3742"
+           x="307.942"
+           y="213.506"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-family="Georgia" font-style="oblique">&#x3bd;</tspan>
+    </text>
+    <text
+          id="text3743"
+           x="180.000"
+           y="154.904"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">N</tspan>
+    </text>
+    <text
+          id="text3744"
+           x="110.000"
+           y="100.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-family="Georgia" font-style="oblique">&#x3c6;</tspan>
+    </text>
+    <text
+          id="text3745"
+           x="90.000"
+           y="300.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">O<tspan dy="4" font-size="8">1</tspan></tspan>
+    </text>
+    <text
+          id="text3746"
+           x="85.000"
+           y="45.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">O</tspan>
+    </text>
+    <text
+          id="text3747"
+           x="85.000"
+           y="275.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">-</tspan>
+    </text>
+    <text
+          id="text3748"
+           x="107.000"
+           y="275.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">+</tspan>
+    </text>
+    <text
+          id="text3749"
+           x="140.000"
+           y="270.000"
+ font-family="Verdana"
+   font-size="12"
+        fill="rgb(000,099,099)" >
+      <tspan font-style="oblique">s</tspan>
+    </text>
+    <circle
+          id="circle3750"
+          cx="100.000"
+          cy="30.000"
+           r="3.000"
+       style="fill:rgb(255,255,255);stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <circle
+          id="circle3751"
+          cx="225.000"
+          cy="246.506"
+           r="3.000"
+       style="fill:rgb(255,255,255);stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+    <circle
+          id="circle3752"
+          cx="100.000"
+          cy="280.000"
+           r="3.000"
+       style="fill:rgb(255,255,255);stroke:black;stroke-width:1.000;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;" />
+</svg>

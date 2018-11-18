@@ -134,7 +134,7 @@ clean:
 
 ## Examples
 
-Other examples you can see at **examples** directory where you can build some of them after install **SVG C Library** on your system. Also you can find working examples on **dynamics.su** site in the [Target Setting](https://dynamics.su/theory/issues/#targets-setting) section where all pictures created using **SVG C Library**.
+Other examples you can see at **[examples](examples)** directory where you can build some of them after install **SVG C Library** on your system. Also you can find working examples on **dynamics.su** site in the [Target Setting](https://dynamics.su/theory/issues/#targets-setting) section where all pictures created using **SVG C Library**.
 <br/>
 <br/>
 

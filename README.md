@@ -134,6 +134,6 @@ clean:
 
 # Copyright and license
 
-Code and documentation copyright 2009-2018 Andrey V. Kosteltsev.
+Code and documentation copyright 2009-2018 Andrey V. Kosteltsev.<br/>
 Code and documentation released under [the LGPL version 2.1](COPYING.LIB).
 

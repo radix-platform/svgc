@@ -1,4 +1,6 @@
 
+<br/>
+
 # SVG C Library
 
 This is a library writen in C language for drawing SVG images.
@@ -6,6 +8,8 @@ This is a library writen in C language for drawing SVG images.
 [Scalable Vector Graphics](http://www.w3.org/Graphics/SVG/) are supported by all modern browsers and, no less important, supports almost all graphic primitives. In addition, interpolation by splines allows you to apply SVG for drawing function graphs.
 
 SVG image is a text in the XML language. [SVG standard](http://www.w3.org/TR/SVG/) well documented and not difficult to even beginners.
+<br/>
+<br/>
 
 ## Install SVG C Library
 
@@ -26,7 +30,8 @@ $ sudo installpkg svgc-1.0.8-x86_64-1.txz
 ```
 
 Also we have package for **i686** architecture if you need.
-
+<br/>
+<br/>
 
 ## Quick Start
 
@@ -104,6 +109,7 @@ Finally, we need to write an image to a file:
   return( 0 );
 }
 ```
+<br/>
 
 This program will produce following picture:
 
@@ -123,6 +129,8 @@ main.o: main.c
 clean:
 	rm *.o main
 ```
+<br/>
+<br/>
 
 # Copyright and license
 

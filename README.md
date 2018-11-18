@@ -107,7 +107,7 @@ Finally, we need to write an image to a file:
 
 This program will produce following picture:
 
-![Resulting picture](images/fig-1.svg)
+![Resulting picture](images/fig-1.jpeg)
 
 To build this programm you can make use following Makefile:
 
@@ -123,4 +123,9 @@ main.o: main.c
 clean:
 	rm *.o main
 ```
+
+# Copyright and license
+
+Code and documentation copyright 2009-2018 Andrey V. Kosteltsev.
+Code and documentation released under [the LGPL version 2.1](COPYING.LIB).
 

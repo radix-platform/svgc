@@ -48,7 +48,7 @@ struct __svg_line    *line;
 struct __svg_rect    *rect;
 struct __svg_circle  *circle;
 
-struct __svg_scene *scene;
+struct __svg_scene   *scene;
 
 int main( void )
 {
@@ -129,6 +129,12 @@ main.o: main.c
 clean:
 	rm *.o main
 ```
+<br/>
+<br/>
+
+## Examples
+
+Other examples you can see at **examples** directory where you can build some of them after install **SVG C Library** on your system. Also you can find working examples on **dynamics.su** site in the [Target Setting](https://dynamics.su/theory/issues/#targets-setting) section where all pictures created using **SVG C Library**.
 <br/>
 <br/>
 

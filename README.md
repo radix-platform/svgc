@@ -15,7 +15,7 @@ SVG image is a text in the XML language. [SVG standard](http://www.w3.org/TR/SVG
 
 To build and install **svgc** library from source distribution you have to clone this repository or download source tarball and then perform followind commands:
 
-```Bash
+```shell
 $ git clone https://gitlab.radix.pro/kx/svgc.git
 $ cd svgc
 $ ./configure --prefix=/usr
@@ -25,7 +25,7 @@ $ sudo make install
 
 If you work on Slackware machine the you can to install pacckage by following simple command:
 
-```Bash
+```shell
 $ sudo installpkg svgc-1.0.8-x86_64-1.txz
 ```
 
@@ -37,7 +37,7 @@ Also we have package for **i686** architecture if you need.
 
 The programming principle is very simple. First of all we have to initialize needed data structures:
 
-```C
+```c
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -68,7 +68,7 @@ int main( void )
 
 Then we have to fill the list of graphical primitives:
 
-```C
+```c
   /* Set current values for newest objects: */
   __svg_set_scene_stroke( "black" );
   __svg_set_scene_stroke_width( 1.0 );
@@ -101,7 +101,7 @@ Then we have to fill the list of graphical primitives:
 
 Finally, we need to write an image to a file:
 
-```C
+```c
   __svg_paint_scene( scene, 0, "M.svg" );
 
   __svg_free_scene( scene );
@@ -117,7 +117,7 @@ This program will produce following picture:
 
 To build this programm you can make use following Makefile:
 
-```Makefile
+```makefile
 all: main
 
 main: main.o

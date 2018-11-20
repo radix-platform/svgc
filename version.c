@@ -34,12 +34,12 @@ extern _svgc_version_t _svgc_version;
 _svgc_version_t _svgc_version = {
     0x100208,
     "1.0.8",
-    "1.0.8 (15-Nov-2018)",
-    "This is _svgc, Version 1.0.8 (15-Nov-2018)",
-    "_svgc 1.0.8 (15-Nov-2018)",
+    "1.0.8 (20-Nov-2018)",
+    "This is _svgc, Version 1.0.8 (20-Nov-2018)",
+    "_svgc 1.0.8 (20-Nov-2018)",
     "_svgc/1.0.8",
-    "@(#)_svgc 1.0.8 (15-Nov-2018)",
-    "$Id: _svgc 1.0.8 (15-Nov-2018) $"
+    "@(#)_svgc 1.0.8 (20-Nov-2018)",
+    "$Id: _svgc 1.0.8 (20-Nov-2018) $"
 };
 
 #endif /* _VERSION_C_AS_HEADER_ */

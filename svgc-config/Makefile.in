@@ -536,6 +536,7 @@ uninstall-am: uninstall-binSCRIPTS
 
 
 svgc-config: make-svgc-config head tail
+	chmod +x ./make-svgc-config
 	./make-svgc-config
 
 clean-am:

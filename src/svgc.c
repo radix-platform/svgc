@@ -2163,7 +2163,7 @@ __svg_paint_node( data )
          else               group = "";
          fprintf( output_file, 
 "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" 
-"<!-- Created with __svg_lib (http://www._kxLab.com/) -->\n"
+"<!-- Created with __svg_lib (https://gitlab.radix.pro/kx/svgc/) -->\n"
 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n"
 "  \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
 "<svg\n"

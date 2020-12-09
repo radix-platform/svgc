@@ -113,7 +113,7 @@ Finally, we need to write an image to a file:
 
 This program will produce following picture:
 
-![Resulting picture](https://cgit.radix.pro/.radix/images/svgc/fig-1.jpeg)
+![Resulting picture](https://cgit.radix.pro/.radix/pixmaps/svgc/fig-1.jpeg)
 
 To build this programm you can make use following Makefile:
 

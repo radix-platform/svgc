@@ -141,5 +141,5 @@ Other examples you can see at **[examples](examples)** directory where you can b
 # Copyright and license
 
 Code and documentation copyright 2009-2018 Andrey V. Kosteltsev.<br/>
-Code and documentation released under [the LGPL version 2.1](COPYING.LIB).
+Code and documentation released under [the LGPL version 2.1](https://cgit.radix.pro/svgc.git/trunk/COPYING.LIB).
 
